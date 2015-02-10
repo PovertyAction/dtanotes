@@ -10,7 +10,7 @@ the creating do-file, etc. to option -creator()-.
 Drops -dtanotes- dataset notes.
 */
 pr dtanotes
-	vers 12.1
+	vers 10.1
 
 	gettoken subcmd rest : 0
 
