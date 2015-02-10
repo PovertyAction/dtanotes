@@ -54,8 +54,10 @@ pr add_notes
 	add_note Dataset created by `creator'.
 	loc date : di %td date(c(current_date), "DMY")
 	add_note Dataset created on `date' at `c(current_time)'.
-	add_note Dataset created on computer `:environment computername' ///
-		by user `c(username)'.
+	loc computer : environment computername
+	if "`computer'" == "" ///
+		loc computer (unknown)
+	add_note Dataset created on computer `computer' by user `c(username)'.
 
 	qui datasig set, reset
 	add_note Data signature: `r(datasignature)'
