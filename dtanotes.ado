@@ -14,22 +14,38 @@ pr dtanotes
 
 	gettoken subcmd rest : 0
 
+	define_globals
+
 	if `"`subcmd'"' == "drop" {
 		drop_notes `rest'
 	}
 	else {
 		add_notes `0'
 	}
+
+	drop_globals
+end
+
+pr define_globals
+	syntax
+	gl DTANOTES_VERSION 1.0.0
+end
+
+pr drop_globals
+	syntax
+	foreach suffix in VERSION {
+		gl DTANOTES_`suffix'
+	}
 end
 
 pr add_note
-	note: {* dtanotes}`0'
+	note: {* dtanotes $DTANOTES_VERSION}`0'
 end
 
 pr add_notes
 	syntax, creator(str)
 
-	dtanotes drop
+	drop_notes
 
 	lab data "See notes."
 
@@ -57,6 +73,8 @@ pr add_notes
 end
 
 pr drop_notes
+	syntax
+
 	lab data
 
 	loc n : char _dta[note0]
@@ -65,7 +83,7 @@ pr drop_notes
 		ex
 	forv i = 1/`n' {
 		loc note : char _dta[note`i']
-		mata: if (regexm(st_local("note"), "^{\* dtanotes}")) ///
+		mata: if (regexm(st_local("note"), "^{\* dtanotes .*}")) ///
 			st_global("_dta[note`i']", "");;
 	}
 end
