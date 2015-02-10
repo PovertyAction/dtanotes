@@ -1,14 +1,3 @@
-/* Syntax:
-
-	dtanotes, creator()
-
-Adds useful metadata as dataset notes. Specify the name of
-the creating do-file, etc. to option -creator()-.
-
-	dtanotes drop
-
-Drops -dtanotes- dataset notes.
-*/
 pr dtanotes
 	vers 10.1
 
