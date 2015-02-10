@@ -72,7 +72,6 @@ pr add_notes
 		add_note Git working tree status: `status'
 	}
 
-	note renumber _dta
 	note _dta
 end
 
