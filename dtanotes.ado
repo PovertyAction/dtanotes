@@ -43,7 +43,7 @@ pr add_note
 end
 
 pr add_notes
-	syntax, creator(str)
+	syntax, creator(str) [NOGIT]
 
 	drop_notes
 
@@ -60,13 +60,15 @@ pr add_notes
 	qui datasig set, reset
 	add_note Data signature: `r(datasignature)'
 
-	vers `c(stata_version)': qui stgit
-	if c(stata_version) >= 13 ///
-		loc status = cond(r(is_clean), "", "not ") + "clean"
-	else ///
-		loc status unknown
-	add_note Git SHA of last commit: `r(sha)'
-	add_note Git working tree status: `status'
+	if "`nogit'" == "" {
+		vers `c(stata_version)': qui stgit
+		if c(stata_version) >= 13 ///
+			loc status = cond(r(is_clean), "", "not ") + "clean"
+		else ///
+			loc status unknown
+		add_note Git SHA of last commit: `r(sha)'
+		add_note Git working tree status: `status'
+	}
 
 	note renumber _dta
 	note _dta
