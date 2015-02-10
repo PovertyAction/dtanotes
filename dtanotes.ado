@@ -15,18 +15,18 @@ pr dtanotes
 	gettoken subcmd rest : 0
 
 	if `"`subcmd'"' == "drop" {
-		Drop `rest'
+		drop_notes `rest'
 	}
 	else {
-		Add `0'
+		add_notes `0'
 	}
 end
 
-pr Note
+pr add_note
 	note: {* dtanotes}`0'
 end
 
-pr Add
+pr add_notes
 	syntax, creator(str)
 
 	dtanotes drop
@@ -35,28 +35,28 @@ pr Add
 
 	loc creator "`"`creator'"'"
 	loc creator : list clean creator
-	Note Dataset created by `creator'.
+	add_note Dataset created by `creator'.
 	loc date : di %td date(c(current_date), "DMY")
-	Note Dataset created on `date' at `c(current_time)'.
-	Note Dataset created on computer `:environment computername' ///
+	add_note Dataset created on `date' at `c(current_time)'.
+	add_note Dataset created on computer `:environment computername' ///
 		by user `c(username)'.
 
 	qui datasig set, reset
-	Note Data signature: `r(datasignature)'
+	add_note Data signature: `r(datasignature)'
 
 	vers `c(stata_version)': qui stgit
 	if c(stata_version) >= 13 ///
 		loc status = cond(r(is_clean), "", "not ") + "clean"
 	else ///
 		loc status unknown
-	Note Git SHA of last commit: `r(sha)'
-	Note Git working tree status: `status'
+	add_note Git SHA of last commit: `r(sha)'
+	add_note Git working tree status: `status'
 
 	note renumber _dta
 	note _dta
 end
 
-pr Drop
+pr drop_notes
 	lab data
 
 	loc n : char _dta[note0]
