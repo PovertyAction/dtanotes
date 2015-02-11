@@ -1,3 +1,4 @@
+*! version 1.0.0 Matthew White 13feb2015
 pr dtanotes
 	vers 10.1
 
