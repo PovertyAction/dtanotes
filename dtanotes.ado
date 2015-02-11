@@ -68,7 +68,7 @@ pr add_notes
 			loc status = cond(r(is_clean), "", "not ") + "clean"
 		else ///
 			loc status unknown
-		add_note Git SHA of last commit: `r(sha)'
+		add_note Git SHA of current commit: `r(sha)'
 		add_note Git working tree status: `status'
 	}
 
