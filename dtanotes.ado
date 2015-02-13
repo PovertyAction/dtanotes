@@ -64,12 +64,20 @@ pr add_notes
 
 	if "`nogit'" == "" {
 		vers `c(stata_version)': qui stgit
-		if c(stata_version) >= 13 ///
+		loc sha `r(sha)'
+		if c(stata_version) >= 13 {
 			loc status = cond(r(is_clean), "", "not ") + "clean"
-		else ///
-			loc status unknown
-		add_note Git SHA of current commit: `r(sha)'
+			loc uncommitted "`r(untracked)' `r(untracked_folders)' `r(uncommitted_changes)'"
+			loc uncommitted : list sort uncommitted
+		}
+		else {
+			loc status      unknown
+			loc uncommitted unknown
+		}
+
+		add_note Git SHA of current commit: `sha'
 		add_note Git working tree status: `status'
+		add_note Git uncommitted changes: `uncommitted'
 	}
 
 	note _dta
