@@ -80,7 +80,7 @@ pr add_notes
 		add_note Git uncommitted changes: `uncommitted'
 	}
 
-	note _dta
+	varabbrev_on note _dta
 end
 
 pr drop_notes
@@ -96,6 +96,15 @@ pr drop_notes
 		mata: st_local("is_dtanote", ///
 			strofreal(regexm(st_global("_dta[note`i']"), "^{\* dtanotes .*}")))
 		if `is_dtanote' ///
-			qui note drop _dta in `i'
+			qui varabbrev_on note drop _dta in `i'
 	}
+end
+
+* -notes _dta- requires variable abbreviation in Stata 10,
+* which also does not have the -varabbrev- prefix.
+pr varabbrev_on
+	loc varabbrev `c(varabbrev)'
+	set varabbrev on
+	`macval(0)'
+	set varabbrev `varabbrev'
 end
