@@ -85,8 +85,9 @@ pr drop_notes
 	if _rc ///
 		ex
 	forv i = 1/`n' {
-		loc note : char _dta[note`i']
-		mata: if (regexm(st_local("note"), "^{\* dtanotes .*}")) ///
-			st_global("_dta[note`i']", "");;
+		mata: st_local("is_dtanote", ///
+			strofreal(regexm(st_global("_dta[note`i']"), "^{\* dtanotes .*}")))
+		if `is_dtanote' ///
+			qui note drop _dta in `i'
 	}
 end
