@@ -1,7 +1,7 @@
 dtanotes
 ========
 
-`dtanotes` is a Stata program that adds useful metadata as dataset notes.
+`dtanotes` is a Stata program that adds useful metadata as dataset notes. The latest version is available through SSC: type `ssc install dtanotes` in Stata to install.
 
 Contributing
 ------------
