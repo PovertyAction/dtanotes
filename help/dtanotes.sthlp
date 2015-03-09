@@ -1,5 +1,5 @@
 {smcl}
-{* *! version 1.0.0 Matthew White 13feb2015}{...}
+{* *! version 1.0.1 Matthew White 09mar2015}{...}
 {title:Title}
 
 {phang}
@@ -80,8 +80,11 @@ The GitHub repository for {cmd:dtanotes} is
 {marker author}{...}
 {title:Author}
 
-{pstd}Matthew White, Innovations for Poverty Action{p_end}
-{pstd}mwhite@poverty-action.org{p_end}
+{pstd}Matthew White{p_end}
+
+{pstd}For questions or suggestions, submit a
+{browse "https://github.com/PovertyAction/dtanotes/issues":GitHub issue}
+or e-mail researchsupport@poverty-action.org.{p_end}
 
 
 {title:Also see}
